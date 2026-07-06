@@ -4,6 +4,18 @@ Aplicação web para famílias organizarem o fluxo de caixa doméstico: quem gan
 
 A regra de negócio central: **menores de 18 anos podem registrar despesas, mas não receitas** — o sistema bloqueia isso automaticamente no backend.
 
+## 🔗 Aplicação no ar
+
+**Acesse em: [family-finance-1.onrender.com](https://family-finance-1.onrender.com/)**
+
+Como é um sistema multi-família, o primeiro acesso exige um cadastro:
+
+1. Na tela inicial, escolha a opção de **criar conta/família** (em vez de "Entrar").
+2. Informe o nome da família, cidade e defina um usuário e senha.
+3. Faça login com as credenciais criadas e cadastre as pessoas da família para começar a lançar receitas e despesas.
+
+> ⚠️ O backend está hospedado no plano gratuito do Render, então a primeira requisição depois de um tempo sem uso pode demorar alguns segundos para "acordar" o servidor (cold start).
+
 ## ✨ Funcionalidades
 
 - **Autenticação por família** — cada família tem usuário/senha próprios, com troca de senha obrigatória no primeiro acesso.
@@ -45,7 +57,7 @@ O frontend é uma SPA em React que consome essa API via REST.
 
 **Infraestrutura**
 - Docker (multi-stage build) para empacotar a API
-- Deploy sugerido: [Render](https://render.com/) (API) + Supabase (banco)
+- Deploy: [Render](https://render.com/) (API + frontend) + [Supabase](https://supabase.com/) (banco PostgreSQL)
 
 ## 📁 Estrutura do repositório
 
@@ -99,5 +111,3 @@ npm run dev
 ```
 
 Acesse `http://localhost:5173`. Se a API estiver rodando em outra porta/URL, ajuste `API_BASE_URL` em `src/api.ts`.
-
-
