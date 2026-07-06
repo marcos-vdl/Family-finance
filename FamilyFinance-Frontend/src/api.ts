@@ -13,8 +13,9 @@ import type {
   MonthOption,
 } from './types';
 
-// Ajuste esta URL para onde a sua API .NET estiver rodando (ver launchSettings.json / appsettings).
-export const API_BASE_URL = 'http://localhost:5276/api';
+// Em desenvolvimento aponta pro backend local. Em produção (Netlify/Render), defina a
+// variável de ambiente VITE_API_BASE_URL com a URL da API já publicada (ex.: Render).
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5276/api';
 
 const http = axios.create({
   baseURL: API_BASE_URL,
