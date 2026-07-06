@@ -13,8 +13,7 @@ import type {
   MonthOption,
 } from './types';
 
-// Em desenvolvimento aponta pro backend local. Em produção (Netlify/Render), defina a
-// variável de ambiente VITE_API_BASE_URL com a URL da API já publicada (ex.: Render).
+
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5276/api';
 
 const http = axios.create({
