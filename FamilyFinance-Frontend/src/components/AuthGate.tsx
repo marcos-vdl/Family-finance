@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { authApi, extractErrorMessage } from '../api';
-import type { AuthFamily } from '../types';
+import type { Family } from '../types';
 
 interface Props {
-  onAuthenticated: (family: AuthFamily) => void;
+  onAuthenticated: (family: Family) => void;
 }
 
 type Mode = 'login' | 'register';
@@ -30,7 +30,7 @@ export default function AuthGate({ onAuthenticated }: Props) {
   const [showDefaultPasswordModal, setShowDefaultPasswordModal] = useState(false);
 
   // Tela de troca de senha obrigatória no primeiro acesso.
-  const [pendingFamily, setPendingFamily] = useState<AuthFamily | null>(null);
+  const [pendingFamily, setPendingFamily] = useState<Family | null>(null);
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -88,7 +88,7 @@ export default function AuthGate({ onAuthenticated }: Props) {
 
       setShowDefaultPasswordModal(true);
       // Já deixa o usuário pronto pra logar em seguida.
-      setLoginUsername(created.username);
+      setLoginUsername(created.username ?? '');
       setLoginPassword('');
       setRegName('');
       setRegCity('');
