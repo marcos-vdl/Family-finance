@@ -3,6 +3,7 @@ using FamilyFinance.Application.Interfaces;
 using FamilyFinance.Application.Services;   
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,13 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 
 // 2. Adiciona o suporte para Controllers
-builder.Services.AddControllers();
+// Serializa enums (ex.: TransactionType) como string ("Income"/"Expense") em vez de número,
+// que é o que o front-end espera ao comparar t.type === 'Income'.
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 // 2.5 Libera o(s) front-end(s) para chamar a API.
 // Em produção, defina a variável de ambiente ALLOWED_ORIGINS (separadas por vírgula,
